@@ -1,0 +1,40 @@
+"use client";
+
+import { useState } from "react";
+import TerminalWelcome from "@/components/TerminalWelcome";
+import CustomCursor from "@/components/CustomCursor";
+import Navigation from "@/components/Navigation";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Portfolio from "@/components/Portfolio";
+import Testimonials from "@/components/Testimonials";
+import Blog from "@/components/Blog";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import { Toaster } from "./ui/sonner";
+
+export default function Home() {
+  const [showTerminal, setShowTerminal] = useState(true);
+
+  return (
+    <>
+      <CustomCursor />
+      {showTerminal && <TerminalWelcome onComplete={() => setShowTerminal(false)} />}
+      {!showTerminal && (
+        <div className="min-h-screen bg-background">
+          <Navigation />
+          <main>
+            <Hero />
+            <About />
+            <Portfolio />
+            <Testimonials />
+            <Blog />
+            <Contact />
+          </main>
+          <Toaster />
+          <Footer />
+        </div>
+      )}
+    </>
+  );
+}
