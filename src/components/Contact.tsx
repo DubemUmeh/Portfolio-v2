@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/app/ui/card";
 import { Input } from "@/app/ui/input";
 import { Textarea } from "@/app/ui/textarea";
 import { Label } from "@/app/ui/label";
+import { toast } from "sonner";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -39,6 +40,9 @@ export default function Contact() {
 
       if (response.ok && data.success) {
         setIsSubmitted(true);
+        toast('Message Sent Successfully', {
+          description: 'Replies in <10mins'
+        })
         setFormData({ name: "", email: "", subject: "", message: "" });
         
         // Reset success message after 5 seconds
@@ -50,11 +54,17 @@ export default function Contact() {
         if (data.errors) {
           setFieldErrors(data.errors);
         }
+        toast('Failed to send message', {
+          description: 'Please try again'
+        })
         setError(data.message || "Failed to send message. Please try again.");
       }
     } catch (err) {
       console.error("Error submitting form:", err);
       setError("Network error. Please check your connection and try again.");
+      toast('Network error', {
+        description: 'Please check your connection and try again.'
+      })
     } finally {
       setIsSubmitting(false);
     }

@@ -2,8 +2,8 @@ import nodemailer from "nodemailer";
 
 // Email configuration using Brevo SMTP
 export const emailConfig = {
-  host: process.env.BREVO_SMTP_HOST || "smtp-relay.brevo.com",
-  port: parseInt(process.env.BREVO_SMTP_PORT || "587"),
+  host:"smtp-relay.brevo.com",
+  port: 587,
   secure: false, // true for 465, false for other ports
   auth: {
     user: process.env.BREVO_SMTP_USER,
@@ -24,8 +24,8 @@ export const generateContactEmail = (data: {
   message: string;
 }) => {
   return {
-    from: process.env.BREVO_SENDER_EMAIL || process.env.BREVO_SMTP_USER,
-    to: process.env.RECIPIENT_EMAIL || "dev@mandc2025.org",
+    from: '"Portfolio Contact" <dev@mandc2025.org>',
+    to: 'dev@mandc2025.org',
     replyTo: data.email,
     subject: `Portfolio Contact: ${data.subject}`,
     html: `
