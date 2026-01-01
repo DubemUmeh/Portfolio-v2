@@ -83,7 +83,7 @@ export default function Portfolio() {
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 rounded-2xl"
+                        className="w-full h-full object-cover transition-all duration-700 rounded-2xl"
                       />
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <span className="text-white font-mono text-sm border border-white px-4 py-2">
@@ -119,7 +119,7 @@ export default function Portfolio() {
 
         {/* Project Modal */}
         <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto glass backdrop-blur-xl border border-white/20 bg-black/95">
+          <DialogContent className="w-full sm:max-w-[85vw] max-h-[90vh] overflow-y-auto glass backdrop-blur-xl border border-white/20 bg-black/95">
             {selectedProject && (
               <div>
                 <div className="relative overflow-hidden mb-6">
@@ -154,6 +154,13 @@ export default function Portfolio() {
                     <h3 className="text-xl font-bold mb-3 tracking-tight">THE SOLUTION</h3>
                     <p className="text-neutral-400">{selectedProject.solution}</p>
                   </div>
+
+                  {selectedProject.results && (
+                    <div className="glass backdrop-blur-md p-6 border border-white/10 bg-white/5">
+                      <h3 className="text-xl font-bold mb-3 tracking-tight text-white">THE RESULTS</h3>
+                      <p className="text-white font-medium text-lg">{selectedProject.results}</p>
+                    </div>
+                  )}
 
                   <div className="flex items-center justify-center gap-4 pt-4">
                     <a

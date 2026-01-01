@@ -42,11 +42,10 @@ const useTextScramble = (finalText: string, trigger: boolean) => {
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; vx: number; vy: number }>>([]);
   const [startScramble, setStartScramble] = useState(false);
   
-  const scrambledName = useTextScramble("DUBEM UMEH", startScramble);
+  const scrambledName = useTextScramble("BUILD. SCALE. DOMINATE.", startScramble);
   
   // Smooth mouse tracking
   const mouseX = useMotionValue(0);
@@ -89,7 +88,6 @@ export default function Hero() {
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
@@ -198,7 +196,7 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="mb-4"
             >
-              <h1 className="text-7xl md:text-9xl font-bold tracking-tighter leading-none">
+              <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none">
                 <motion.span
                   className="inline-block"
                   whileHover={{ 
@@ -207,7 +205,7 @@ export default function Hero() {
                     transition: { duration: 0.3 }
                   }}
                 >
-                  {scrambledName || "DUBEM UMEH"}
+                  {scrambledName || "BUILD. SCALE. DOMINATE."}
                 </motion.span>
               </h1>
             </motion.div>
@@ -222,7 +220,7 @@ export default function Hero() {
               <h2 className="text-2xl md:text-3xl text-neutral-400 font-mono flex items-center justify-center gap-3">
                 <Terminal className="w-6 h-6" />
                 <span className="border-r-2 border-white/50 pr-1 animate-pulse">
-                  FULL-STACK DEVELOPER
+                  SOLVING BUSINESS PROBLEMS WITH CODE
                 </span>
               </h2>
             </motion.div>
@@ -234,8 +232,8 @@ export default function Hero() {
               transition={{ delay: 1.2 }}
               className="text-lg md:text-xl text-neutral-500 mb-12 max-w-3xl mx-auto leading-relaxed"
             >
-              Crafting <span className="text-white font-semibold">exceptional digital experiences</span> through 
-              clean architecture and innovative engineering. Specialized in building scalable systems that matter.
+              I don't just write code. I build <span className="text-white font-semibold">robust, scalable solutions</span> that save time, 
+              increase conversion, and deliver real ROI. Let's turn your complex problems into elegant software.
             </motion.p>
 
             {/* CTA Buttons with magnetic effect */}
@@ -253,7 +251,7 @@ export default function Hero() {
                 onMouseLeave={() => handleMagneticLeave(buttonRef1)}
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  VIEW WORK
+                  SEE RESULTS
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <motion.div
@@ -316,8 +314,8 @@ export default function Hero() {
               whileHover={{ scale: 1.1 }}
               className="glass backdrop-blur-md px-6 py-4 text-center border border-white/20"
             >
-              <div className="text-4xl font-bold mb-1">3+</div>
-              <div className="text-neutral-500 tracking-wider">YEARS EXP</div>
+              <div className="text-4xl font-bold mb-1">100%</div>
+              <div className="text-neutral-500 tracking-wider">PROJECT SUCCESS</div>
             </motion.div>
 
             <motion.div
@@ -325,7 +323,7 @@ export default function Hero() {
               className="glass backdrop-blur-md px-6 py-4 text-center border border-white/20"
             >
               <div className="text-4xl font-bold mb-1">6+</div>
-              <div className="text-neutral-500 tracking-wider">PROJECTS</div>
+              <div className="text-neutral-500 tracking-wider">HAPPY CLIENTS</div>
             </motion.div>
           </motion.div>
 

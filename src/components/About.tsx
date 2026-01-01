@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Code2, Palette, Rocket, Users } from "lucide-react";
+import { Code2, Handshake, Rocket, Trophy } from "lucide-react";
 import { Card, CardContent } from "@/app/ui/card";
 import { useRef } from "react";
 
@@ -23,24 +23,24 @@ export default function About() {
 
   const highlights = [
     {
-      icon: Code2,
-      title: "Clean Code",
-      description: "Writing maintainable, scalable, and well-documented code",
+      icon: Trophy,
+      title: "Results First",
+      description: "I focus on ROI, conversions, and performance, not just code.",
     },
     {
-      icon: Palette,
-      title: "Design Focus",
-      description: "Creating beautiful, intuitive user interfaces",
+      icon: Handshake,
+      title: "Easy to Work With",
+      description: "Clear communication, regular updates, and no technical jargon.",
     },
     {
       icon: Rocket,
-      title: "Performance",
-      description: "Optimizing applications for speed and efficiency",
+      title: "On-Time Delivery",
+      description: "I respect deadlines. Your project launches when we say it will.",
     },
     {
-      icon: Users,
-      title: "Collaboration",
-      description: "Working effectively with cross-functional teams",
+      icon: Code2,
+      title: "Problem Solver",
+      description: "I don't just build features; I solve business challenges.",
     },
   ];
 
@@ -68,7 +68,7 @@ export default function About() {
             style={{ opacity }}
             className="text-xl text-neutral-500 max-w-3xl mx-auto font-mono tracking-wide"
           >
-            WITH OVER 5 YEARS OF EXPERIENCE IN SOFTWARE DEVELOPMENT
+            PARTNERING WITH BUSINESSES TO BUILD SCALABLE SOLUTIONS
           </motion.p>
         </motion.div>
 
@@ -82,23 +82,19 @@ export default function About() {
             className="glass backdrop-blur-md rounded-2xl p-12 border border-white/10 scanline relative group hover-lift"
           >
             <div className="absolute inset-0 spotlight" />
-            <h3 className="text-3xl font-bold mb-6 tracking-tight">MY JOURNEY</h3>
+            <h3 className="text-3xl font-bold mb-6 tracking-tight">WHY WORK WITH ME?</h3>
             <div className="space-y-4 text-neutral-400 leading-relaxed">
               <p>
-                My journey in software development actually began when a friend shared resources with me,
-                and that sparked my curiosity for how things work. What started as tinkering with HTML and
-                CSS soon grew into a passion for creating innovative solutions that impact lives.
+                In a world full of developers, why choose me? It's simple: <span className="text-white font-semibold">I care about your success.</span>
               </p>
 
               <p>
-                Over the years, I've built everything from small personal projects to more advanced
-                applications, steadily growing my skills and exploring new technologies. Along the way,
-                that same friend I once asked for an updated shared <span className="text-white font-semibold underline underline-offset-2"><a href="https://www.freecodecamp.org" target="_blank" rel="noopener noreferrer">FreeCodeCamp</a></span> site kept encouraging me to push further.
+                I've learned that clean code is important, but <span className="text-white font-semibold">solving the right problem</span> is critical. 
+                Whether you need to increase sales, streamline operations, or launch a new product, I bring a business-first mindset to engineering.
               </p>
 
               <p>
-                Today, I focus on creating seamless digital experiences that combine aesthetic
-                design with robust functionality.
+                From our first conversation to the final deployment, you'll get clear communication, honest feedback, and a partner who treats your project like their own.
               </p>
             </div>
           </motion.div>
@@ -141,13 +137,13 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           <h3 className="text-4xl font-bold mb-12 text-center tracking-tighter">
-            TECHNICAL SKILLS
+            TECHNICAL ARSENAL
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { title: "FRONTEND", skills: skills.frontend, icon: Code2 },
               { title: "BACKEND", skills: skills.backend, icon: Rocket },
-              { title: "TOOLS", skills: skills.tools, icon: Users }
+              { title: "TOOLS", skills: skills.tools, icon: Trophy } // Changed icon to match imported
             ].map((category, idx) => (
               <motion.div
                 key={category.title}

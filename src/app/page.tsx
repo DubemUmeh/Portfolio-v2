@@ -9,6 +9,7 @@ import About from "@/components/About";
 import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
 import Blog from "@/components/Blog";
+import Process from "@/components/Process";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { Toaster } from "./ui/sonner";
@@ -26,6 +27,7 @@ export default function Home() {
           <main>
             <Hero />
             <About />
+            <Process />
             <Portfolio />
             <Testimonials />
             <Blog />
