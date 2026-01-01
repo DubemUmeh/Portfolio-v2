@@ -68,7 +68,7 @@ export default function About() {
             style={{ opacity }}
             className="text-xl text-neutral-500 max-w-3xl mx-auto font-mono tracking-wide"
           >
-            PARTNERING WITH BUSINESSES TO BUILD SCALABLE SOLUTIONS
+            WITH OVER 3 YEARS OF EXPERIENCE IN SOFTWARE DEVELOPMENT
           </motion.p>
         </motion.div>
 
