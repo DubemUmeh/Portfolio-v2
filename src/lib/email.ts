@@ -24,8 +24,8 @@ export const generateContactEmail = (data: {
   message: string;
 }) => {
   return {
-    from: '"Portfolio Contact" <dev@mandc2025.org>',
-    to: 'dev@mandc2025.org',
+    from: '"Dubem Portfolio" <info@umeh.site>',
+    to: 'info@umeh.site',
     replyTo: data.email,
     subject: `Portfolio Contact: ${data.subject}`,
     html: `
