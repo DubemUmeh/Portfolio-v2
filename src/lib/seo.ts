@@ -19,8 +19,9 @@ export interface SEOConfig {
 
 const SITE_CONFIG = {
   name: "Dubem Umeh - Full-Stack Software Developer",
-  description: "Portfolio of Dubem Umeh, a Creative full-stack software developer specializing in modern web technologies. Building scalable applications with great user experiences.",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://umeh.site",
+  description:
+    "Portfolio of Dubem Umeh, a Creative full-stack software developer specializing in modern web technologies. Building scalable applications with great user experiences.",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://umeh.vercel.app",
   twitterHandle: "@dubem_umeh",
   linkedinUrl: "https://linkedin.com/in/dubem-umeh",
   githubUrl: "https://github.com/DubemUmeh",
@@ -59,10 +60,10 @@ export function generateMetadata(config: SEOConfig): Metadata {
     title: fullTitle,
     description,
     keywords: [
-      ...keywords, 
-      "full-stack developer", 
-      "web development", 
-      "software engineering", 
+      ...keywords,
+      "full-stack developer",
+      "web development",
+      "software engineering",
       "Dubem",
       "Umeh",
       "Dubem Umeh",
@@ -114,13 +115,15 @@ export function generateMetadata(config: SEOConfig): Metadata {
   };
 
   if (articleAuthor || publishedDate || modifiedDate) {
-    const otherMetadata: Record<string, string | number | (string | number)[]> = {};
+    const otherMetadata: Record<string, string | number | (string | number)[]> =
+      {};
     if (articleAuthor) otherMetadata["article:author"] = articleAuthor;
     if (publishedDate) otherMetadata["article:published_time"] = publishedDate;
     if (modifiedDate) otherMetadata["article:modified_time"] = modifiedDate;
     if (articleCategory) otherMetadata["article:section"] = articleCategory;
-    if (articleTags.length > 0) otherMetadata["article:tags"] = articleTags.join(", ");
-    
+    if (articleTags.length > 0)
+      otherMetadata["article:tags"] = articleTags.join(", ");
+
     metadata.other = otherMetadata;
   }
 
@@ -148,7 +151,9 @@ export function generateJsonLd(
 /**
  * Generate breadcrumb JSON-LD
  */
-export function generateBreadcrumbJsonLd(items: Array<{ label: string; url: string }>) {
+export function generateBreadcrumbJsonLd(
+  items: Array<{ label: string; url: string }>
+) {
   return generateJsonLd("BreadcrumbList", {
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",

@@ -13,20 +13,20 @@ export default function TerminalWelcome({ onComplete }: TerminalWelcomeProps) {
   const [fadeOut, setFadeOut] = useState(false);
 
   const commands = [
-    { text: "npm install dubem-portfolio", delay: 500 },
-    { text: "", delay: 200 },
-    { text: "⠋ Installing dependencies...", delay: 800 },
-    { text: "⠙ Fetching packages...", delay: 600 },
-    { text: "⠹ Building modules...", delay: 700 },
-    { text: "⠸ Optimizing assets...", delay: 600 },
-    { text: "✓ Installation complete!", delay: 800 },
-    { text: "", delay: 200 },
-    { text: "added 127 packages in 3.4s", delay: 500 },
-    { text: "", delay: 300 },
-    { text: "npm start", delay: 600 },
-    { text: "", delay: 200 },
-    { text: "> Starting portfolio...", delay: 500 },
-    { text: "✓ Ready on http://localhost:3000", delay: 800 },
+    { text: "npm install dubem-portfolio", delay: 200 },
+    { text: "", delay: 50 },
+    { text: "⠋ Installing dependencies...", delay: 300 },
+    { text: "⠙ Fetching packages...", delay: 200 },
+    { text: "⠹ Building modules...", delay: 200 },
+    { text: "⠸ Optimizing assets...", delay: 200 },
+    { text: "✓ Installation complete!", delay: 300 },
+    { text: "", delay: 50 },
+    { text: "added 127 packages in 3.4s", delay: 200 },
+    { text: "", delay: 50 },
+    { text: "npm start", delay: 20 },
+    { text: "", delay: 100 },
+    { text: "> Starting portfolio...", delay: 300 },
+    { text: "✓ Ready on http://localhost:3000", delay: 300 },
   ];
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function TerminalWelcome({ onComplete }: TerminalWelcomeProps) {
         setTimeout(() => {
           setFadeOut(true);
           setTimeout(onComplete, 800);
-        }, 1000);
+        }, 100);
       }
     };
 

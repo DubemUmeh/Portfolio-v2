@@ -32,7 +32,7 @@ export function generateMetadata({ params }: BlogPageProps): Metadata {
     ogTitle: `${post.title} - Blog`,
     ogDescription: post.excerpt,
     ogImage: post.image,
-    canonical: `https://umeh.site/blog/${post.slug}`,
+    canonical: `https://umeh.vercel.app/blog/${post.slug}`,
     robots: "index, follow",
     publishedDate,
     articleAuthor: "Dubem Umeh",

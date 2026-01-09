@@ -37,7 +37,7 @@ export function generateMetadata({ params }: ProjectPageProps): Metadata {
     ogTitle: `${project.title} - Dubem Umeh`,
     ogDescription: project.description,
     ogImage: project.image,
-    canonical: `https://umeh.site/projects/${project.id}`,
+    canonical: `https://umeh.vercel.app/projects/${project.id}`,
     robots: "index, follow",
   });
 }

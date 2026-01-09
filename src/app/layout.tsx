@@ -27,7 +27,7 @@ export const metadata: Metadata = generateSEOMetadata({
   ],
   ogTitle: "Dubem Umeh - Full-Stack Developer & Software Engineer",
   ogDescription: "Explore my portfolio of full-stack web applications and digital solutions built with modern technologies.",
-  ogImage: "https://umeh.site/og-image.png",
+  ogImage: "https://umeh.vercel.app/og-image.png",
 });
 
 export default function RootLayout({
@@ -59,7 +59,7 @@ export default function RootLayout({
 
         {/* Google tag (gtag.js) */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-FN9CY0406L"
+          src="https://www.googletagmanager.com/gtag/js?id=G-1EZ80YLEEL"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -67,8 +67,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
-            gtag('config', 'G-FN9CY0406L');
+            gtag('config', 'G-1EZ80YLEEL');
           `}
         </Script>
 

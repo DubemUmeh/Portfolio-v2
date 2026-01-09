@@ -20,7 +20,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.label,
-      item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://umeh.site"}${item.href}`,
+      item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://umeh.vercel.app"}${item.href}`,
     })),
   };
 

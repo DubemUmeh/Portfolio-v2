@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://umeh.site";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://umeh.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,12 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: [
-          "/api/",
-          "/admin/",
-          "/*?*sort=",
-          "/*?*filter=",
-        ],
+        disallow: ["/api/", "/admin/", "/*?*sort=", "/*?*filter="],
       },
       {
         userAgent: "AdsBot-Google",
