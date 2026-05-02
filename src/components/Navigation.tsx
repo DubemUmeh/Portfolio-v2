@@ -66,7 +66,7 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href='/contact' className="hidden md:flex py-2 md:py-3 items-center px-5 rounded-xl border border-gray-200 text-sm font-semibold text-primary bg-blue-200/70 hover:bg-blue-200/50 transition-colors cursor-pointer shadow-xs">
+            <Link href='/#contact' className="hidden md:flex py-2 md:py-3 items-center px-5 rounded-xl border border-gray-200 text-sm font-semibold text-primary bg-blue-200/70 hover:bg-blue-200/50 transition-colors cursor-pointer shadow-xs">
               Contact Me
             </Link>
 
@@ -103,7 +103,7 @@ export default function Navigation() {
                 ))}
                 <div className="pt-2">
                   <Link 
-                    href='/contact' 
+                    href='/#contact' 
                     onClick={() => setIsOpen(false)}
                     className="w-full flex h-12 items-center justify-center px-5 rounded-xl border border-gray-200 text-base font-semibold text-primary bg-blue-200/70 hover:bg-blue-200/50 transition-colors cursor-pointer shadow-sm">
                     Contact Me
