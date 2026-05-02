@@ -4,11 +4,12 @@ import { motion, useMotionValue, useSpring, useTransform, useScroll } from "fram
 import { ArrowRight, Download, Github, Linkedin, Mail, Terminal } from "lucide-react";
 import { Button } from "@/app/ui/button";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 // Text scramble effect
 const useTextScramble = (finalText: string, trigger: boolean) => {
   const [displayText, setDisplayText] = useState("");
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+  const chars = "";
   
   useEffect(() => {
     if (!trigger) return;
@@ -122,7 +123,7 @@ export default function Hero() {
     <section 
       ref={containerRef}
       id="home" 
-      className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center pt-22 px-6 relative overflow-hidden hero-page"
     >
       {/* Floating particles */}
       {particles.map(particle => (
@@ -177,12 +178,12 @@ export default function Hero() {
               }}
               className="inline-block mb-8"
             >
-              <div className="px-6 py-2 border border-white/20 glass backdrop-blur-sm">
+              <div className="px-6 py-2 border border-accent-foreground/10 rounded-[4px] glass backdrop-blur-sm">
                 <div className="flex items-center gap-2">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="w-2 h-2 bg-white rounded-full"
+                    className="w-2 h-2 rounded-full bg-green-500"
                   />
                   <span className="text-sm tracking-widest font-mono">AVAILABLE FOR HIRE</span>
                 </div>
@@ -217,16 +218,18 @@ export default function Hero() {
               transition={{ delay: 1 }}
               className="mb-6"
             >
-              <h2 className="text-2xl md:text-3xl text-neutral-400 font-mono flex items-center justify-center gap-3">
-                <Terminal className="w-6 h-6" />
-                <span className="border-r-2 border-white/50 pr-1 animate-pulse">
-                  SOLVING BUSINESS PROBLEMS WITH CODE
+              <h2 className="text-2xl md:text-3xl text-neutral-400 font-mono flex justify-center gap-3">
+                <span className="size-fit p-1 border-2 border-destructive hidden md:block">
+                  <Terminal className="w-7 h-5 text-destructive font-bold" />
+                </span>
+                <span className="border-r-2 border-white/50 pr-1 text-lg md:text-xl">
+                  <span className="bg-accent-foreground p-1 text-background">SOLVING BUSINESS PROBLEMS</span> <span className="animate-pulse text-foreground">WITH CODE</span>
                 </span>
               </h2>
             </motion.div>
             
             {/* Description */}
-            <motion.p
+            {/* <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2 }}
@@ -234,23 +237,23 @@ export default function Hero() {
             >
               I don't just write code. I build <span className="text-white font-semibold">robust, scalable solutions</span> that save time, 
               increase conversion, and deliver real ROI. Let's turn your complex problems into elegant software.
-            </motion.p>
+            </motion.p> */}
 
             {/* CTA Buttons with magnetic effect */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4 }}
-              className="relative top-0 left-0 flex flex-wrap gap-6 justify-center mb-16 !z-50"
+              className="relative top-0 left-0 flex items-center justify-center gap-2 my-16 z-50!"
             >
-              <a
+              <Link
                 ref={buttonRef1}
                 href="#portfolio"
-                className="magnetic group px-8 py-4 bg-white text-black font-mono font-bold tracking-wider hover:bg-neutral-200 transition-all border-2 border-white relative overflow-hidden"
+                className="magnetic group p-4 bg-background rounded-3xl text-black font-mono font-bold tracking-wider hover:bg-neutral-200 transition-all border-2 border-accent relative overflow-hidden"
                 onMouseMove={(e) => handleMagneticMove(e, buttonRef1)}
                 onMouseLeave={() => handleMagneticLeave(buttonRef1)}
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center gap-2 text-sm">
                   SEE RESULTS
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
@@ -260,20 +263,20 @@ export default function Hero() {
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
-              </a>
+              </Link>
               
-              <a
+              <Link
                 ref={buttonRef2}
                 href="#contact"
-                className="magnetic group px-8 py-4 border-2 border-white text-white font-mono font-bold tracking-wider hover:bg-white hover:text-black transition-all"
+                className="magnetic group p-4 border-2 bg-foreground rounded-3xl text-white font-mono font-bold tracking-wider hover:bg-background hover:text-foreground hover:border-accent transition-all"
                 onMouseMove={(e) => handleMagneticMove(e, buttonRef2)}
                 onMouseLeave={() => handleMagneticLeave(buttonRef2)}
               >
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2 text-sm">
                   <Download className="w-4 h-4" />
                   DOWNLOAD CV
                 </span>
-              </a>
+              </Link>
             </motion.div>
 
             {/* Social Links */}
@@ -286,14 +289,14 @@ export default function Hero() {
               {[
                 { icon: Github, href: "https://github.com/DubemUmeh" },
                 { icon: Linkedin, href: "https://linkedin.com/in/dubem-umeh" },
-                { icon: Mail, href: "mailto:dev@mandc2025.org" }
+                { icon: Mail, href: "mailto:dev@umeh.site" }
               ].map((social, i) => (
                 <motion.a
                   key={i}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-4 border border-white/20 hover:border-white hover:bg-white transition-all"
+                  className="group p-4 border border-accent bg-background rounded-full hover:border-white hover:bg-white transition-all"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -312,17 +315,17 @@ export default function Hero() {
           >
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="glass backdrop-blur-md px-6 py-4 text-center border border-white/20"
+              className="glass bg-background backdrop-blur-md px-6 py-4 text-center border-2 border-white/80 rounded-md shadow-md shadow-foreground/10"
             >
-              <div className="text-4xl font-bold mb-1">100%</div>
+              <div className="text-4xl font-bold mb-1">95%</div>
               <div className="text-neutral-500 tracking-wider">PROJECT SUCCESS</div>
             </motion.div>
 
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="glass backdrop-blur-md px-6 py-4 text-center border border-white/20"
+              className="glass bg-background backdrop-blur-md px-6 py-4 text-center border-2 border-white/80 rounded-md shadow-md shadow-foreground/10"
             >
-              <div className="text-4xl font-bold mb-1">6+</div>
+              <div className="text-4xl font-bold mb-1">10+</div>
               <div className="text-neutral-500 tracking-wider">HAPPY CLIENTS</div>
             </motion.div>
           </motion.div>

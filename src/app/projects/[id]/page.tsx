@@ -1,5 +1,6 @@
 "use client";
 
+import { use } from "react";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ArrowLeft } from "lucide-react";
@@ -9,13 +10,14 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { RelatedLinks } from "@/components/InternalLink";
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects.find((p) => p.id === parseInt(params.id));
+  const { id } = use(params);
+  const project = projects.find((p) => p.id === parseInt(id));
 
   if (!project) {
     notFound();
@@ -32,30 +34,29 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-6 py-16">
+      <div className="landing-container w-[min(100%,76rem)] mx-auto px-5">
         <Breadcrumb
           items={[
             { label: "Home", href: "/" },
-            { label: "Portfolio", href: "/#portfolio" },
+            { label: "Portfolio", href: "/projects" },
             { label: project.title, href: `/projects/${project.id}` },
           ]}
           className="mb-8"
         />
-        <Link
-          href="/#portfolio"
-          className="inline-flex items-center gap-2 text-neutral-400 hover:text-white mb-8 transition-colors"
+        {/* <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-[#525252] hover:text-[#0a0a0a] mb-12 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Portfolio
-        </Link>
+        </Link> */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {/* Hero Image */}
-          <div className="mb-12 rounded-2xl overflow-hidden">
+          <div className="mb-12 rounded-[2.4rem] overflow-hidden border border-[rgba(10,10,10,0.06)] shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
             <img
               src={project.image}
               alt={project.title}
@@ -63,41 +64,38 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             />
           </div>
 
-          {/* Title and Meta */}
-          <div className="mb-12">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
+          <div className="mb-16">
+            <h1 className="text-[clamp(2.5rem,7vw,4rem)] font-['Fraunces',Georgia,serif] leading-none tracking-[-0.04em] font-bold mb-6 text-[#0a0a0a]">
               {project.title}
             </h1>
-            <p className="text-xl text-neutral-400 mb-8">{project.description}</p>
+            <p className="text-[1.1rem] leading-[1.72] text-[#525252] mb-8 max-w-3xl">{project.description}</p>
 
-            {/* Links */}
-            <div className="flex gap-4 mb-8">
-              <a
+            <div className="flex flex-wrap gap-3 mb-8">
+              <Link
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-lg font-semibold hover:bg-neutral-200 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-[1rem] bg-[#0a0a0a] text-white font-semibold hover:bg-[#262626] transition-all shadow-[0_4px_14px_rgba(10,10,10,0.18)]"
               >
                 <ExternalLink className="w-4 h-4" />
                 View Live
-              </a>
-              <a
+              </Link>
+              <Link
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white rounded-lg font-semibold hover:border-white transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-[1rem] border border-[rgba(10,10,10,0.12)] bg-[rgba(255,255,255,0.72)] text-[#0a0a0a] font-semibold hover:bg-white hover:border-[rgba(10,10,10,0.2)] transition-all"
               >
                 <Github className="w-4 h-4" />
                 View Code
-              </a>
+              </Link>
             </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm font-mono"
+                  className="rounded-full border border-[rgba(10,10,10,0.08)] bg-[rgba(255,255,255,0.72)] px-4 py-2 text-sm font-semibold text-[#525252] uppercase tracking-[0.08em]"
                 >
                   {tag}
                 </span>
@@ -105,61 +103,65 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
-          {/* Content Grid */}
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            {/* Full Description */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="border border-[rgba(10,10,10,0.07)] rounded-[1.6rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.78))] shadow-[0_12px_28px_rgba(15,23,42,0.04)] p-8"
             >
-              <h2 className="text-3xl font-bold mb-4">Overview</h2>
-              <p className="text-neutral-400 leading-relaxed mb-6">
+              <h2 className="text-[1.8rem] font-['Fraunces',Georgia,serif] font-bold mb-4 text-[#0a0a0a]">Overview</h2>
+              <p className="text-[#525252] leading-[1.75] mb-6">
                 {project.fullDescription}
               </p>
-              <p className="text-neutral-300 text-sm italic">
-                Category: <span className="font-semibold">{project.category.toUpperCase()}</span>
-              </p>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(255,205,112,0.15)] border border-[rgba(255,205,112,0.3)]">
+                <span className="text-sm font-semibold uppercase tracking-[0.1em] text-[#525252]">Category:</span>
+                <span className="font-semibold text-[#0a0a0a]">{project.category.toUpperCase()}</span>
+              </div>
             </motion.div>
 
-            {/* Challenge & Solution */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-6"
             >
-              <h2 className="text-3xl font-bold mb-4">Challenge</h2>
-              <p className="text-neutral-400 leading-relaxed mb-8">{project.challenge}</p>
-              <h2 className="text-3xl font-bold mb-4">Solution</h2>
-              <p className="text-neutral-400 leading-relaxed">{project.solution}</p>
+              <div className="border border-[rgba(10,10,10,0.07)] rounded-[1.6rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.78))] shadow-[0_12px_28px_rgba(15,23,42,0.04)] p-8">
+                <h3 className="text-[1.5rem] font-['Fraunces',Georgia,serif] font-bold mb-4 text-[#0a0a0a]">Challenge</h3>
+                <p className="text-[#525252] leading-[1.75]">{project.challenge}</p>
+              </div>
+
+              <div className="border border-[rgba(10,10,10,0.07)] rounded-[1.6rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.78))] shadow-[0_12px_28px_rgba(15,23,42,0.04)] p-8">
+                <h3 className="text-[1.5rem] font-['Fraunces',Georgia,serif] font-bold mb-4 text-[#0a0a0a]">Solution</h3>
+                <p className="text-[#525252] leading-[1.75]">{project.solution}</p>
+              </div>
             </motion.div>
           </div>
 
-          {/* Features and Results */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid md:grid-cols-2 gap-12 border-t border-white/10 pt-12"
+            className="grid md:grid-cols-2 gap-8 border-t border-[rgba(10,10,10,0.06)] pt-12"
           >
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Key Features</h3>
-              <ul className="space-y-3">
+            <div className="border border-[rgba(10,10,10,0.07)] rounded-[1.6rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.78))] shadow-[0_12px_28px_rgba(15,23,42,0.04)] p-8">
+              <h3 className="text-[1.5rem] font-['Fraunces',Georgia,serif] font-bold mb-6 text-[#0a0a0a]">Key Features</h3>
+              <ul className="space-y-4">
                 {project.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="text-white font-bold mt-1">▸</span>
-                    <span className="text-neutral-400">{feature}</span>
+                    <span className="text-[#0a0a0a] font-bold mt-1 text-lg">▸</span>
+                    <span className="text-[#525252] leading-[1.6]">{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {project.results && (
-              <div>
-                <h3 className="text-2xl font-bold mb-6">Results & Impact</h3>
-                <p className="text-neutral-400 leading-relaxed mb-4">{project.results}</p>
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
-                  <p className="text-sm text-neutral-300">
+              <div className="border border-[rgba(10,10,10,0.07)] rounded-[1.6rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.78))] shadow-[0_12px_28px_rgba(15,23,42,0.04)] p-8">
+                <h3 className="text-[1.5rem] font-['Fraunces',Georgia,serif] font-bold mb-6 text-[#0a0a0a]">Results & Impact</h3>
+                <p className="text-[#525252] leading-[1.75] mb-6">{project.results}</p>
+                <div className="bg-[rgba(255,205,112,0.08)] border border-[rgba(255,205,112,0.2)] rounded-[1rem] p-5">
+                  <p className="text-sm text-[#525252]">
                     This project demonstrates the impact of thoughtful engineering and user-centered design.
                   </p>
                 </div>
@@ -167,7 +169,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             )}
           </motion.div>
 
-          {/* Related Projects */}
           <RelatedLinks
             links={relatedProjects}
             sectionTitle="Other Projects"

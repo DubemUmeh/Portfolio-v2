@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { generateMetadata as generateSEOMetadata, generatePersonSchema, SITE_NAME } from "@/lib/seo";
+import './global.css';
+import AppLayout from "./app-layout";
 
 export const metadata: Metadata = generateSEOMetadata({
   title: "Dubem Umeh - Full-Stack Software Developer",
@@ -78,7 +79,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className="antialiased">
-        {children}
+        <AppLayout>{children}</AppLayout>
         <Analytics />
       </body>
     </html>

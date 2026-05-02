@@ -1,102 +1,97 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MessageSquare, Lightbulb, PenTool, Rocket } from "lucide-react";
-import { Card, CardContent } from "@/app/ui/card";
+
+const steps = [
+  {
+    icon: MessageSquare,
+    eyebrow: "1. Discovery",
+    title: "We start with your goals, not code.",
+    body: "We dive deep into your business goals, target audience, and current challenges. No code is written until we know exactly what success looks like.",
+  },
+  {
+    icon: Lightbulb,
+    eyebrow: "2. Strategy",
+    title: "A clear roadmap before we build.",
+    body: "I create a roadmap and technical architecture. You'll see exactly how we'll solve your problem before a single line is written.",
+  },
+  {
+    icon: PenTool,
+    eyebrow: "3. Development",
+    title: "Modern, scalable, transparent builds.",
+    body: "I build your solution using modern, scalable tech. You get regular updates and can see progress in real-time throughout.",
+  },
+  {
+    icon: Rocket,
+    eyebrow: "4. Launch",
+    title: "We ship — and I stay.",
+    body: "We test everything rigorously, then launch. I don't just disappear; I make sure your system runs smoothly after go-live.",
+  },
+] as const;
 
 export default function Process() {
-  const steps = [
-    {
-      icon: MessageSquare,
-      title: "1. DISCOVERY",
-      description: "We start with a deep dive into your business goals, target audience, and current challenges. No code is written until we know exactly what success looks like.",
-      videoPlaceholder: "WATCH A SAMPLE DISCOVERY CALL"
-    },
-    {
-      icon: Lightbulb,
-      title: "2. STRATEGY",
-      description: "I creating a roadmap and technical architecture. You'll see exactly how we'll solve your problem before we build.",
-      videoPlaceholder: "SEE HOW I PLAN A PROJECT"
-    },
-    {
-      icon: PenTool,
-      title: "3. DEVELOPMENT",
-      description: "I build your solution using modern, scalable tech details. You get regular updates and can see the progress in real-time.",
-      videoPlaceholder: "WATCH ME CODE A FEATURE"
-    },
-    {
-      icon: Rocket,
-      title: "4. LAUNCH",
-      description: "We test everything rigourously. Then we launch. But I don't just disappear; I ensure your system runs smoothly.",
-      videoPlaceholder: "A SUCCESSFUL LAUNCH DAY"
-    }
-  ];
-
   return (
-    <section id="process" className="py-32 px-6 relative overflow-hidden bg-black/50">
-      <div className="container mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="w-24 h-[2px] bg-white mx-auto mb-8"
-          />
-          <h2 className="text-6xl md:text-8xl font-bold mb-6 tracking-tighter">
-            MY PROCESS
-          </h2>
-          <p className="text-xl text-neutral-500 max-w-3xl mx-auto font-mono">
-            HOW I DELIVER PREDICTABLE RESULTS
-          </p>
-        </motion.div>
+    <section className="landing-section relative px-5 pb-20">
 
-        <div className="grid md:grid-cols-2 gap-8 relative">
-          {/* Connector Line (Desktop) */}
-          <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px bg-white/20 transform -translate-x-1/2" />
+      {/* .landing-container */}
+      <div className="landing-container w-[min(100%,76rem)] mx-auto">
 
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className={`relative ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:col-start-2 md:pl-12"}`}
-            >
-              {/* Timeline Dot */}
-              <div className="absolute top-8 left-0 md:top-8 w-4 h-4 bg-white rounded-full 
-                md:transform md:-translate-x-1/2 md:left-1/2 shadow-[0_0_10px_white]" 
-                style={{ left: index % 2 !== 0 && window.innerWidth < 768 ? '-8px' : undefined }}
-              />
+        {/* .landing-ai-shell */}
+        <div className="landing-ai-shell relative border border-[rgba(10,10,10,0.07)] rounded-4xl bg-[radial-gradient(circle_at_top_left,rgba(246,213,247,0.16),transparent_24%),radial-gradient(circle_at_88%_14%,rgba(255,225,147,0.12),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.82),rgba(255,255,255,0.68))] shadow-[0_20px_48px_rgba(15,23,42,0.05),0_1px_0_rgba(255,255,255,0.74)_inset] p-6
+          before:content-[''] before:absolute before:inset-x-[-0.8rem] before:top-[-1.2rem] before:h-56 before:rounded-full before:bg-[radial-gradient(circle_at_24%_48%,rgba(246,213,247,0.55),transparent_42%),radial-gradient(circle_at_78%_38%,rgba(255,225,147,0.38),transparent_36%),radial-gradient(circle_at_62%_72%,rgba(255,184,142,0.26),transparent_34%)] before:blur-[42px] before:opacity-[0.72] before:pointer-events-none before:z-0
+          *:relative *:z-1">
 
-              <Card className="glass backdrop-blur-md border border-white/10 hover:border-white/30 transition-all mb-12 group overflow-hidden">
-                <CardContent className="p-8">
-                  <div className={`inline-block p-3 border border-white/20 rounded-xl mb-4 group-hover:bg-white group-hover:text-black transition-colors`}>
-                    <step.icon className="w-6 h-6" />
+          {/* .landing-ai-header */}
+          <div className="landing-ai-header max-w-2xl mb-6">
+
+            {/* .landing-kicker */}
+            <div className="landing-kicker inline-flex items-center gap-2 border border-[rgba(10,10,10,0.1)] rounded-full bg-[rgba(255,255,255,0.72)] shadow-[0_8px_20px_rgba(15,23,42,0.05)] px-[0.8rem] py-[0.45rem] text-[0.76rem] font-semibold tracking-[0.12em] uppercase text-[#737373]">
+              My Process
+            </div>
+
+            {/* .display-title .landing-section-title */}
+            <h2 className="display-title landing-section-title mt-4 text-[clamp(2rem,5vw,3.6rem)] leading-none tracking-[-0.04em] text-[#0a0a0a] font-['Fraunces',Georgia,serif] [font-optical-sizing:auto]">
+              How I deliver predictable results.
+            </h2>
+
+            {/* .landing-section-copy */}
+            <p className="landing-section-copy mt-4 text-[1.05rem] leading-[1.72] text-[#525252]">
+              Every engagement follows the same four-phase process — so you always
+              know where we are, what's coming next, and exactly what success
+              looks like before we build it.
+            </p>
+          </div>
+
+          {/* .landing-ai-grid — single column on mobile, 2×2 step grid on desktop */}
+          <div className="landing-ai-grid grid gap-4 md:grid-cols-2">
+
+            {steps.map((step) => {
+              const Icon = step.icon;
+              return (
+                <article
+                  key={step.title}
+                  className="landing-ai-card border border-[rgba(10,10,10,0.07)] rounded-[1.35rem] bg-[rgba(255,255,255,0.76)] shadow-[0_12px_28px_rgba(15,23,42,0.04)] p-[1.1rem]"
+                >
+                  {/* .landing-kicker — eyebrow with step number + icon */}
+                  <div className="landing-kicker inline-flex items-center gap-[0.45rem] border border-[rgba(10,10,10,0.1)] rounded-full bg-[rgba(255,255,255,0.72)] shadow-[0_8px_20px_rgba(15,23,42,0.05)] px-[0.8rem] py-[0.45rem] text-[0.76rem] font-semibold tracking-[0.12em] uppercase text-[#737373]">
+                    <Icon size={12} strokeWidth={2} />
+                    {step.eyebrow}
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 tracking-tight">{step.title}</h3>
-                  <p className="text-neutral-400 mb-6">{step.description}</p>
-                  
-                  {/* Video Placeholder */}
-                  <div className="relative aspect-video bg-black/50 rounded-lg flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-all cursor-pointer">
-                    <div className="text-center p-4">
-                      <div className="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
-                        <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent ml-1" />
-                      </div>
-                      <p className="text-xs font-mono text-neutral-500">{step.videoPlaceholder}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+
+                  {/* .landing-ai-card h3 */}
+                  <h3 className="mt-[0.9rem] mb-0 text-[1.15rem] leading-[1.15] tracking-[-0.03em] text-[#0a0a0a] font-semibold">
+                    {step.title}
+                  </h3>
+
+                  {/* .landing-ai-card p */}
+                  <p className="mt-3 mb-0 leading-[1.65] text-[#525252]">
+                    {step.body}
+                  </p>
+                </article>
+              );
+            })}
+
+          </div>
         </div>
       </div>
     </section>

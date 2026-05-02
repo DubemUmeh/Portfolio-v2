@@ -48,18 +48,18 @@ export function RelatedLinks({
   sectionTitle = "Related Pages",
 }: RelatedLinksProps) {
   return (
-    <section className="mt-12 pt-8 border-t border-white/10">
+    <section className="mt-12 pt-8 border-t border-foreground/30">
       <h3 className="text-2xl font-bold mb-6">{sectionTitle}</h3>
       <ul className="space-y-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-neutral-400 hover:text-white transition-colors"
+              className="text-neutral-700 hover:text-foreground/70 transition-colors"
             >
               <span className="font-semibold">{link.title}</span>
               {link.description && (
-                <p className="text-sm text-neutral-500 mt-1">{link.description}</p>
+                <p className="text-sm text-neutral-600 mt-1">{link.description}</p>
               )}
             </Link>
           </li>

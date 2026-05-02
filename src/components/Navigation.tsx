@@ -1,105 +1,119 @@
-"use client";
-
-import { motion, useScroll, useTransform } from "framer-motion";
+'use client';
 import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const navItems = [
-  { name: "HOME", href: "#home" },
-  { name: "ABOUT", href: "#about" },
-  { name: "WORK", href: "#portfolio" },
-  { name: "CONTACT", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/projects" },
+  // { label: "Contact", href: "#contact" },
 ];
 
 export default function Navigation() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.9)"]
-  );
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+      if (window.scrollY > 80 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, [isOpen]);
 
   return (
-    <>
-      <motion.nav
-        style={{ backgroundColor }}
-        className="fixed top-0 w-full z-50 border-b border-white/10 backdrop-blur-md"
-      >
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
-            <motion.a
-              href="/"
-              className="text-2xl font-bold font-mono tracking-tighter"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="glitch">DU</span>
-            </motion.a>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  className="relative font-mono text-sm tracking-wider group"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {item.name}
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-300"
-                  />
-                </motion.a>
-              ))}
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed inset-x-0 z-50 transition-all duration-500 box-border bg-white/80 backdrop-blur-md ${
+        isScrolled || isOpen
+          ? "top-4 mx-4 md:mx-10 lg:mx-16 rounded-2xl border border-accent-foreground/20 shadow-sm py-1"
+          : "top-0 py-3 border-b border-b-accent-foreground/20"
+      }`}
+    >
+      <div className="flex flex-col px-4 max-w-7xl mx-auto">
+        {/* Top Header Row (Logo, Desktop Links, Toggle) */}
+        <div className="flex items-center justify-between w-full">
+          {/* Logo & Name */}
+          <Link href="/" className="flex items-center justify-center cursor-pointer" onClick={() => setIsOpen(false)}>
+            <div className="size-full border border-gray-200 flex items-center justify-center rounded-full bg-white text-primary shadow-sm bg-opacity-100">
+              {/* <svg className="size-4" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path clipRule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fillRule="evenodd"></path>
+              </svg> */}
+            <span className="text-xl font-bold tracking-tight text-primary p-3">DU</span>
             </div>
+          </Link>
 
-            {/* Mobile Menu Button */}
-            <button
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center justify-center gap-8">
+            {navItems.map((item) => (
+              <Link 
+                key={item.label}
+                href={item.href}
+                className="text-md font-medium text-gray-600 hover:text-primary transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link href='/contact' className="hidden md:flex py-2 md:py-3 items-center px-5 rounded-xl border border-gray-200 text-sm font-semibold text-primary bg-blue-200/70 hover:bg-blue-200/50 transition-colors cursor-pointer shadow-xs">
+              Contact Me
+            </Link>
+
+             {/* Mobile Toggle */}
+            <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 border border-white/20 hover:border-white transition-colors"
+              className="md:hidden p-2 text-gray-600 hover:text-primary transition-colors cursor-pointer"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
-      </motion.nav>
 
-      {/* Mobile Menu */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: isOpen ? 0 : "100%" }}
-        transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        className="fixed top-0 right-0 w-full h-screen bg-black z-40 md:hidden flex items-center justify-center border-l border-white/10"
-      >
-        <div className="flex flex-col gap-8 text-center">
-          {navItems.map((item, index) => (
-            <motion.a
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="text-4xl font-bold font-mono tracking-tighter hover:text-neutral-500 transition-colors"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : 50 }}
-              transition={{ delay: index * 0.1 }}
+        {/* Mobile Dropdown */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden flex flex-col"
             >
-              {item.name}
-            </motion.a>
-          ))}
-        </div>
-      </motion.div>
-    </>
-  );
+              <div className="pt-4 pb-2 flex flex-col gap-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center px-4 py-3 text-lg font-medium text-gray-700 bg-gray-50/50 hover:bg-gray-100 rounded-xl transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="pt-2">
+                  <Link 
+                    href='/contact' 
+                    onClick={() => setIsOpen(false)}
+                    className="w-full flex h-12 items-center justify-center px-5 rounded-xl border border-gray-200 text-base font-semibold text-primary bg-blue-200/70 hover:bg-blue-200/50 transition-colors cursor-pointer shadow-sm">
+                    Contact Me
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.nav>
+  )
 }

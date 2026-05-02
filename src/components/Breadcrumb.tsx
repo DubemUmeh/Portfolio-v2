@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface BreadcrumbProps {
@@ -32,14 +33,14 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
         suppressHydrationWarning
       />
       <nav
-        className={`flex items-center gap-2 text-sm text-neutral-400 ${className || ""}`}
+        className={`flex items-center gap-2 text-sm text-neutral-500 ${className || ""}`}
         aria-label="Breadcrumb"
       >
         {items.map((item, index) => (
           <React.Fragment key={item.href}>
-            <a href={item.href} className="hover:text-white transition-colors">
+            <Link href={item.href} className="hover:text-foreground transition-colors">
               {item.label}
-            </a>
+            </Link>
             {index < items.length - 1 && <span className="text-neutral-600">/</span>}
           </React.Fragment>
         ))}

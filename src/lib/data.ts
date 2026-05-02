@@ -243,7 +243,7 @@ const testimonials = [
   {
     id: 2,
     name: "Charles Umeh",
-    role: "CEO, IT Choice Tech",
+    role: "CEO, IT Choice Tech LTD",
     image: "",
     content:
       "Working with Dubem was a game changer for our project. His attention to detail, technical expertise, and ability to deliver on time made the entire process seamless.",
