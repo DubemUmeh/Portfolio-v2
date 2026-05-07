@@ -253,7 +253,7 @@ export default function Hero() {
                 onMouseMove={(e) => handleMagneticMove(e, buttonRef1)}
                 onMouseLeave={() => handleMagneticLeave(buttonRef1)}
               >
-                <span className="relative z-10 flex items-center gap-2 text-sm">
+                <span className="relative z-10 flex items-center gap-2 text-xs md:  ">
                   SEE RESULTS
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
@@ -272,7 +272,7 @@ export default function Hero() {
                 onMouseMove={(e) => handleMagneticMove(e, buttonRef2)}
                 onMouseLeave={() => handleMagneticLeave(buttonRef2)}
               >
-                <span className="flex items-center gap-2 text-sm">
+                <span className="flex items-center gap-2 text-xs md:text-sm">
                   <Download className="w-4 h-4" />
                   DOWNLOAD CV
                 </span>
@@ -311,7 +311,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.8 }}
-            className="relative md:absolute md:bottom-20 z-10 md:left-6 md:right-6 flex justify-between items-center text-sm font-mono"
+            className="relative md:absolute md:bottom-20 z-10 md:left-6 md:right-6 flex gap-3 md:gap-0 justify-between items-center text-sm font-mono"
           >
             <motion.div
               whileHover={{ scale: 1.1 }}

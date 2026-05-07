@@ -41,7 +41,7 @@ export default function About() {
         </div>
 
         {/* .landing-container */}
-        <div className="landing-container w-[min(100%,76rem)] mx-auto py-20 px-5">
+        <div className="landing-container w-[min(100%,76rem)] mx-auto py-20">
 
           {/* .landing-feature-grid */}
           <div className="landing-feature-grid grid gap-6 items-stretch md:grid-cols-[minmax(0,1.1fr)_minmax(19rem,0.9fr)]">

@@ -1,36 +1,20 @@
 "use client";
 
-import { use } from "react";
-import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, ArrowLeft } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
-import { projects } from "@/lib/data";
+import Image from "next/image";
+import { Project } from "@/lib/data";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { RelatedLinks } from "@/components/InternalLink";
+import createSlug from "@/util/use-slug";
 
-interface ProjectPageProps {
-  params: Promise<{
-    id: string;
-  }>;
+interface Props {
+  project: Project;
+  relatedProjects: { href: string; title: string; description: string }[];
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const { id } = use(params);
-  const project = projects.find((p) => p.id === parseInt(id));
-
-  if (!project) {
-    notFound();
-  }
-
-  const relatedProjects = projects
-    .filter((p) => p.id !== project.id)
-    .slice(0, 3)
-    .map((p) => ({
-      href: `/projects/${p.id}`,
-      title: p.title,
-      description: p.description,
-    }));
+export default function ProjectPageClient({ project, relatedProjects }: Props) {
 
   return (
     <div className="min-h-screen bg-background">
@@ -39,7 +23,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           items={[
             { label: "Home", href: "/" },
             { label: "Portfolio", href: "/projects" },
-            { label: project.title, href: `/projects/${project.id}` },
+            { label: project.title, href: `/projects/${createSlug(project.title)}` },
           ]}
           className="mb-8"
         />
@@ -57,11 +41,18 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           transition={{ duration: 0.6 }}
         >
           <div className="mb-12 rounded-[2.4rem] overflow-hidden border border-[rgba(10,10,10,0.06)] shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
-            <img
+            {project.image && (
+              <Image
               src={project.image}
               alt={project.title}
               className="w-full h-96 object-cover"
-            />
+              width={1000}
+              height={1000}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
+              loading="eager"
+              />
+            )}
           </div>
 
           <div className="mb-16">
@@ -75,7 +66,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-[1rem] bg-[#0a0a0a] text-white font-semibold hover:bg-[#262626] transition-all shadow-[0_4px_14px_rgba(10,10,10,0.18)]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#0a0a0a] text-white font-semibold hover:bg-[#262626] transition-all shadow-[0_4px_14px_rgba(10,10,10,0.18)]"
               >
                 <ExternalLink className="w-4 h-4" />
                 View Live
@@ -84,7 +75,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-[1rem] border border-[rgba(10,10,10,0.12)] bg-[rgba(255,255,255,0.72)] text-[#0a0a0a] font-semibold hover:bg-white hover:border-[rgba(10,10,10,0.2)] transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl border border-[rgba(10,10,10,0.12)] bg-[rgba(255,255,255,0.72)] text-[#0a0a0a] font-semibold hover:bg-white hover:border-[rgba(10,10,10,0.2)] transition-all"
               >
                 <Github className="w-4 h-4" />
                 View Code
@@ -95,7 +86,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-[rgba(10,10,10,0.08)] bg-[rgba(255,255,255,0.72)] px-4 py-2 text-sm font-semibold text-[#525252] uppercase tracking-[0.08em]"
+                  className="rounded-full border border-[rgba(10,10,10,0.2)] bg-[rgba(255,255,255,0.72)] px-4 py-2 text-sm font-semibold text-[#525252] uppercase tracking-[0.08em]"
                 >
                   {tag}
                 </span>
@@ -115,7 +106,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 {project.fullDescription}
               </p>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(255,205,112,0.15)] border border-[rgba(255,205,112,0.3)]">
-                <span className="text-sm font-semibold uppercase tracking-[0.1em] text-[#525252]">Category:</span>
+                <span className="text-sm font-semibold uppercase tracking-widest text-[#525252]">Category:</span>
                 <span className="font-semibold text-[#0a0a0a]">{project.category.toUpperCase()}</span>
               </div>
             </motion.div>
@@ -160,7 +151,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               <div className="border border-[rgba(10,10,10,0.07)] rounded-[1.6rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.78))] shadow-[0_12px_28px_rgba(15,23,42,0.04)] p-8">
                 <h3 className="text-[1.5rem] font-['Fraunces',Georgia,serif] font-bold mb-6 text-[#0a0a0a]">Results & Impact</h3>
                 <p className="text-[#525252] leading-[1.75] mb-6">{project.results}</p>
-                <div className="bg-[rgba(255,205,112,0.08)] border border-[rgba(255,205,112,0.2)] rounded-[1rem] p-5">
+                <div className="bg-[rgba(255,205,112,0.08)] border border-[rgba(255,205,112,0.2)] rounded-2xl p-5">
                   <p className="text-sm text-[#525252]">
                     This project demonstrates the impact of thoughtful engineering and user-centered design.
                   </p>

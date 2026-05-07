@@ -1,196 +1,196 @@
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  liveUrl: string;
-  githubUrl: string;
-  category: string;
-  fullDescription: string;
-  features: string[];
-  challenge: string;
-  solution: string;
-  results?: string; // New field for client results
-}
+// interface Project {
+//   id: number;
+//   title: string;
+//   description: string;
+//   image: string;
+//   tags: string[];
+//   liveUrl: string;
+//   githubUrl: string;
+//   category: string;
+//   fullDescription: string;
+//   features: string[];
+//   challenge: string;
+//   solution: string;
+//   results?: string;
+// }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Mini E-Commerce Platform",
-    description: "Full-stack e-commerce solution with payment integration",
-    image: "/assets/projects/glossy-affair.png",
-    tags: ["ReactJs", "Stripe", "PostgreSQL", "Supabase Auth"],
-    liveUrl: "https://glossy-affair.mandc2025.org",
-    githubUrl: "https://github.com/DubemUmeh",
-    category: "web",
-    fullDescription:
-      "A comprehensive e-commerce platform built for modern online retail of lip glosses.",
-    features: [
-      "Secure payment processing",
-      "Real-time inventory tracking",
-      "Customer dashboard",
-      "Admin analytics panel",
-    ],
-    challenge:
-      "Building a scalable system that could handle high traffic during sales events.",
-    solution:
-      "Implemented Supabase Auth and PostgreSql rendering with ReactJs and optimized database queries.",
-    results:
-      "Reduced checkout time by 30% and improved mobile conversion rates by 25%.",
-  },
-  {
-    id: 2,
-    title: "Wedding Website",
-    description:
-      "A comprehensive digital platform for wedding management and event details",
-    image: "/assets/projects/wedding.png",
-    tags: ["React", "Node.js", "MongoDB", "Cloudinary"],
-    liveUrl: "https://mandc2025.org",
-    githubUrl: "https://github.com/DubemUmeh",
-    category: "web",
-    fullDescription:
-      "A powerful, responsive wedding website that showcases event details, RSVP forms, and a RECAP page highlighting the celebration's best moments.",
-    features: [
-      "Cloudinary image upload",
-      "MongoDB fast url delivery",
-      "RSVP form attendance",
-    ],
-    challenge: "Ensuring real-time image optimization across multiple devices.",
-    solution:
-      "Cloudinary image deliverability, optimization and responsiveness.",
-    results:
-      "Successfully handled 500+ RSVPs and delivered high-res images with <1s load time.",
-  },
-  {
-    id: 3,
-    title: "Bulk Mailing Platform v1",
-    description:
-      "Effortless mail delivery to multiple addresses with a single click",
-    image: "/assets/projects/bulky.png",
-    tags: ["ReactJs", "Node.js", "PostgreSQL"],
-    liveUrl: "https://bulky.dev.mandc2025.org",
-    githubUrl: "https://github.com/dubemUmeh",
-    category: "web",
-    fullDescription:
-      "A secure mailing platform that accepts SMTP details and allows sending emails to multiple addresses simultaneously.",
-    features: [
-      "Multiple SMTP injection",
-      "Token/Passkey generating",
-      "Unique passkey to identify SMTP to use integration",
-    ],
-    challenge:
-      "Ensuring data security, preventing SQL injection attacks, and securely managing unique SMTP credentials.",
-    solution: "Implemented data encryption and passkey based access control.",
-    results:
-      "Enabled businesses to send 10k+ emails daily with 99.9% uptime and zero security breaches.",
-  },
-  {
-    id: 4,
-    title: "Hydraulic Fittings Site",
-    description: "One-stop shop for hoses and hydraulic fittings",
-    image: "/assets/projects/joetech.png",
-    tags: [
-      "Next.Js",
-      "TypeScript",
-      "PostgreSql",
-      "Framer-Motion",
-      "Cloudinary",
-    ],
-    liveUrl: "https://dev.mandc2025.org",
-    githubUrl: "https://github.com/dubemUmeh",
-    category: "web",
-    fullDescription:
-      "A professional responsive site/E-Commerce built for hydraulic fittings.",
-    features: [
-      "Equipment search & filters",
-      "Virtual tours",
-      "Agent messaging",
-      "Admin Dashboard for shop items",
-    ],
-    challenge:
-      "Managing a complex inventory with diverse product specifications and technical data.",
-    solution:
-      "Built a custom inventory management system linked to the frontend store.",
-    results:
-      "Streamlined inventory tracking, reducing manual errors by 80% and increasing online sales inquiries.",
-  },
-  {
-    id: 5,
-    title: "Wedding Anniversary Website",
-    description: "A Silver Jubilee wedding anniversary platform",
-    image: "/assets/projects/wedding-anniversary.png",
-    tags: [
-      "NextJs",
-      "Framer-motion",
-      "TypeScript",
-      "GSAP",
-      "Cloudinary",
-      "Neon PostgreSql",
-    ],
-    liveUrl: "https://anniversary.mandc2025.org",
-    githubUrl: "https://github.com/dubemUmeh",
-    category: "web",
-    fullDescription:
-      "A beautifully crafted wedding anniversary site showcasing the wonderful journey of the couple and their family.",
-    features: [
-      "Interactive Hero layout component",
-      "Wishes page and Add wish form",
-      "Gallery page displaying wonderful family moments and adventures",
-      "Admin dashboard with protective sign-in page, wishes and gallery management",
-    ],
-    challenge:
-      "Ensuring consistent Hero animation performance across different browsers.",
-    solution:
-      "Implemented a 'hasAnimationSupport' hero animation component for incompatible browsers.",
-    results:
-      "Created a memorable digital experience visited by 200+ guests, with flawless cross-browser performance.",
-  },
-  {
-    id: 6,
-    title: "Account Market Site",
-    description: "A SPA for purchasing social media accounts",
-    image: "/assets/projects/account-market.png",
-    tags: ["ReactJs", "Framer-Motion", "TailwindCss", "Jivo Chats Message API"],
-    liveUrl: "https://account-market-dubem-umehs-projects.vercel.app",
-    githubUrl: "https://github.com/dubemUmeh",
-    category: "web",
-    fullDescription:
-      "Buying social media accounts is now easier with Account Market, designed for intuitive navigation and clear product descriptions.",
-    features: [
-      "Interactive Hero layout component",
-      "Accounts availability",
-      "Agent Messaging",
-    ],
-    challenge: "None was encountered.",
-    solution: "Integrated real-time chat for instant customer support.",
-    results:
-      "Reduced customer support response time to under 2 minutes, boosting user trust and sales.",
-  },
-  {
-    id: 7,
-    title: "Bulk Mailing App",
-    description: "Effortless mail delivery to multiple addresses on mobile",
-    image: "/assets/projects/bulky-app.png",
-    tags: ["Coming Soon"],
-    liveUrl: "https://dev.mandc2025.org",
-    githubUrl: "https://github.com/dubemUmeh",
-    category: "mobile",
-    fullDescription:
-      "A secure mailing mobile application that allows utilizing multiple SMTPs for bulk emailing on the go.",
-    features: [
-      "Multiple SMTP injection",
-      "Token/Passkey generating",
-      "Unique passkey to identify SMTP to use integration",
-      "Web Mail integration",
-      "Custom Mail Server",
-    ],
-    challenge: "Coming Soon",
-    solution: "",
-    results:
-      "Anticipated to bring desktop-class mailing power to mobile devices.",
-  },
-];
+// const projects: Project[] = [
+//   {
+//     id: 1,
+//     title: "Mini E-Commerce Platform",
+//     description: "Full-stack e-commerce solution with payment integration",
+//     image: "/assets/projects/glossy-affair.png",
+//     tags: ["ReactJs", "Stripe", "PostgreSQL", "Supabase Auth"],
+//     liveUrl: "https://glossy-affair.mandc2025.org",
+//     githubUrl: "https://github.com/DubemUmeh",
+//     category: "web",
+//     fullDescription:
+//       "A comprehensive e-commerce platform built for modern online retail of lip glosses.",
+//     features: [
+//       "Secure payment processing",
+//       "Real-time inventory tracking",
+//       "Customer dashboard",
+//       "Admin analytics panel",
+//     ],
+//     challenge:
+//       "Building a scalable system that could handle high traffic during sales events.",
+//     solution:
+//       "Implemented Supabase Auth and PostgreSql rendering with ReactJs and optimized database queries.",
+//     results:
+//       "Reduced checkout time by 30% and improved mobile conversion rates by 25%.",
+//   },
+//   {
+//     id: 2,
+//     title: "Wedding Website",
+//     description:
+//       "A comprehensive digital platform for wedding management and event details",
+//     image: "/assets/projects/wedding.png",
+//     tags: ["React", "Node.js", "MongoDB", "Cloudinary"],
+//     liveUrl: "https://mandc2025.org",
+//     githubUrl: "https://github.com/DubemUmeh",
+//     category: "web",
+//     fullDescription:
+//       "A powerful, responsive wedding website that showcases event details, RSVP forms, and a RECAP page highlighting the celebration's best moments.",
+//     features: [
+//       "Cloudinary image upload",
+//       "MongoDB fast url delivery",
+//       "RSVP form attendance",
+//     ],
+//     challenge: "Ensuring real-time image optimization across multiple devices.",
+//     solution:
+//       "Cloudinary image deliverability, optimization and responsiveness.",
+//     results:
+//       "Successfully handled 500+ RSVPs and delivered high-res images with <1s load time.",
+//   },
+//   {
+//     id: 3,
+//     title: "Bulk Mailing Platform v1",
+//     description:
+//       "Effortless mail delivery to multiple addresses with a single click",
+//     image: "/assets/projects/bulky.png",
+//     tags: ["ReactJs", "Node.js", "PostgreSQL"],
+//     liveUrl: "https://bulky.dev.mandc2025.org",
+//     githubUrl: "https://github.com/dubemUmeh",
+//     category: "web",
+//     fullDescription:
+//       "A secure mailing platform that accepts SMTP details and allows sending emails to multiple addresses simultaneously.",
+//     features: [
+//       "Multiple SMTP injection",
+//       "Token/Passkey generating",
+//       "Unique passkey to identify SMTP to use integration",
+//     ],
+//     challenge:
+//       "Ensuring data security, preventing SQL injection attacks, and securely managing unique SMTP credentials.",
+//     solution: "Implemented data encryption and passkey based access control.",
+//     results:
+//       "Enabled businesses to send 10k+ emails daily with 99.9% uptime and zero security breaches.",
+//   },
+//   {
+//     id: 4,
+//     title: "Hydraulic Fittings Site",
+//     description: "One-stop shop for hoses and hydraulic fittings",
+//     image: "/assets/projects/joetech.png",
+//     tags: [
+//       "Next.Js",
+//       "TypeScript",
+//       "PostgreSql",
+//       "Framer-Motion",
+//       "Cloudinary",
+//     ],
+//     liveUrl: "https://dev.mandc2025.org",
+//     githubUrl: "https://github.com/dubemUmeh",
+//     category: "web",
+//     fullDescription:
+//       "A professional responsive site/E-Commerce built for hydraulic fittings.",
+//     features: [
+//       "Equipment search & filters",
+//       "Virtual tours",
+//       "Agent messaging",
+//       "Admin Dashboard for shop items",
+//     ],
+//     challenge:
+//       "Managing a complex inventory with diverse product specifications and technical data.",
+//     solution:
+//       "Built a custom inventory management system linked to the frontend store.",
+//     results:
+//       "Streamlined inventory tracking, reducing manual errors by 80% and increasing online sales inquiries.",
+//   },
+//   {
+//     id: 5,
+//     title: "Wedding Anniversary Website",
+//     description: "A Silver Jubilee wedding anniversary platform",
+//     image: "/assets/projects/wedding-anniversary.png",
+//     tags: [
+//       "NextJs",
+//       "Framer-motion",
+//       "TypeScript",
+//       "GSAP",
+//       "Cloudinary",
+//       "Neon PostgreSql",
+//     ],
+//     liveUrl: "https://anniversary.mandc2025.org",
+//     githubUrl: "https://github.com/dubemUmeh",
+//     category: "web",
+//     fullDescription:
+//       "A beautifully crafted wedding anniversary site showcasing the wonderful journey of the couple and their family.",
+//     features: [
+//       "Interactive Hero layout component",
+//       "Wishes page and Add wish form",
+//       "Gallery page displaying wonderful family moments and adventures",
+//       "Admin dashboard with protective sign-in page, wishes and gallery management",
+//     ],
+//     challenge:
+//       "Ensuring consistent Hero animation performance across different browsers.",
+//     solution:
+//       "Implemented a 'hasAnimationSupport' hero animation component for incompatible browsers.",
+//     results:
+//       "Created a memorable digital experience visited by 200+ guests, with flawless cross-browser performance.",
+//   },
+//   {
+//     id: 6,
+//     title: "Account Market Site",
+//     description: "A SPA for purchasing social media accounts",
+//     image: "/assets/projects/account-market.png",
+//     tags: ["ReactJs", "Framer-Motion", "TailwindCss", "Jivo Chats Message API"],
+//     liveUrl: "https://account-market-dubem-umehs-projects.vercel.app",
+//     githubUrl: "https://github.com/dubemUmeh",
+//     category: "web",
+//     fullDescription:
+//       "Buying social media accounts is now easier with Account Market, designed for intuitive navigation and clear product descriptions.",
+//     features: [
+//       "Interactive Hero layout component",
+//       "Accounts availability",
+//       "Agent Messaging",
+//     ],
+//     challenge: "None was encountered.",
+//     solution: "Integrated real-time chat for instant customer support.",
+//     results:
+//       "Reduced customer support response time to under 2 minutes, boosting user trust and sales.",
+//   },
+//   {
+//     id: 7,
+//     title: "Bulk Mailing App",
+//     description: "Effortless mail delivery to multiple addresses on mobile",
+//     image: "/assets/projects/bulky-app.png",
+//     tags: ["Coming Soon"],
+//     liveUrl: "https://dev.mandc2025.org",
+//     githubUrl: "https://github.com/dubemUmeh",
+//     category: "mobile",
+//     fullDescription:
+//       "A secure mailing mobile application that allows utilizing multiple SMTPs for bulk emailing on the go.",
+//     features: [
+//       "Multiple SMTP injection",
+//       "Token/Passkey generating",
+//       "Unique passkey to identify SMTP to use integration",
+//       "Web Mail integration",
+//       "Custom Mail Server",
+//     ],
+//     challenge: "Coming Soon",
+//     solution: "",
+//     results:
+//       "Anticipated to bring desktop-class mailing power to mobile devices.",
+//   },
+// ];
 
 const posts = [
   {
@@ -278,5 +278,7 @@ const testimonials = [
   // content: "One of the most talented developers I've worked with. Dubem's code quality is exceptional, and his problem-solving abilities are second to none.",
   // },
 ];
+
+import { projects, type Project } from "./projects";
 
 export { projects, type Project, posts, testimonials };

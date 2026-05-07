@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/app/ui/card";
-import { projects } from "@/lib/data";
+import { projects, } from "@/lib/data";
+import createSlug from "@/util/use-slug";
 
 export default function Portfolio() {
   const [filter, setFilter] = useState("all");
@@ -13,6 +14,8 @@ export default function Portfolio() {
   const categories = [
     { id: "all", label: "ALL" },
     { id: "web", label: "WEB" },
+    // { id: "backend", label: "BACKEND" },
+    // { id: "fullstack", label: "FULLSTACK" },
     { id: "mobile", label: "MOBILE" },
   ];
 
@@ -49,7 +52,7 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
             <AnimatePresence mode="wait">
               {filteredProjects.map((project, index) => (
                 <motion.div
@@ -60,10 +63,10 @@ export default function Portfolio() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, delay: index * 0.06 }}
                 >
-                  <Link href={`/projects/${project.id}`}>
-                    <motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 300 }}>
-                      <Card className="glass backdrop-blur-md border border-[rgba(255,255,255,0.2)] hover:border-white/30 overflow-hidden transition-all cursor-pointer group h-full">
-                        <div className="relative overflow-hidden aspect-[4/3] bg-[rgba(10,10,10,0.03)]">
+                  <Link href={`/projects/${createSlug(project.title)}`}>
+                    <motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 300 }} className="h-full">
+                      <Card className="glass backdrop-blur-md border border-[rgba(136,132,132,0.2)] hover:border-foreground/30 overflow-hidden transition-all cursor-pointer group h-full flex flex-col">
+                        {/* <div className="relative overflow-hidden bg-[rgba(10,10,10,0.03)]">
                           <img
                             src={project.image}
                             alt={project.title}
@@ -75,36 +78,38 @@ export default function Portfolio() {
                               View Project
                             </span>
                           </div>
-                        </div>
-                        <CardContent className="p-6">
+                        </div> */}
+                        <CardContent className="px-6 pb-4 pt-2 flex flex-col flex-1">
                           <h3 className="text-xl font-semibold mb-2 tracking-tight text-[#0a0a0a]">{project.title}</h3>
-                          <p className="text-[#525252] mb-4 text-sm">{project.description}</p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tags.map((tag) => (
-                              <span key={tag} className="rounded-full border border-[rgba(10,10,10,0.08)] px-3 py-1 text-[0.72rem] font-semibold uppercase text-[#737373] bg-[rgba(255,255,255,0.8)]">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="flex flex-wrap gap-3 text-sm font-mono text-[#525252]">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                window.open(project.liveUrl, '_blank');
-                              }}
-                              className="inline-flex items-center gap-1 hover:text-[#0a0a0a] transition-colors bg-none border-none p-0 cursor-pointer"
-                            >
-                              <ExternalLink className="w-4 h-4" /> LIVE
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                window.open(project.githubUrl, '_blank');
-                              }}
-                              className="inline-flex items-center gap-1 hover:text-[#0a0a0a] transition-colors bg-none border-none p-0 cursor-pointer"
-                            >
-                              <Github className="w-4 h-4" /> CODE
-                            </button>
+                          <p className="text-[#525252] mb-auto text-sm">{project.description}</p>
+                          <div className="mt-auto pt-4">
+                            <div className="flex flex-wrap gap-2 mb-4">
+                              {project.tags.map((tag) => (
+                                <span key={tag} className="rounded-full border border-[rgba(10,10,10,0.08)] px-3 py-1 text-[0.72rem] font-semibold uppercase text-[#737373] bg-[rgba(255,255,255,0.8)]">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                            <div className="flex flex-wrap gap-3 text-sm font-mono text-[#525252]">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  window.open(project.liveUrl, '_blank');
+                                }}
+                                className="inline-flex items-center gap-1 hover:text-[#0a0a0a] transition-colors bg-none border-none p-0 cursor-pointer"
+                              >
+                                <ExternalLink className="w-4 h-4" /> LIVE
+                              </button>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  window.open(project.githubUrl, '_blank');
+                                }}
+                                className="inline-flex items-center gap-1 hover:text-[#0a0a0a] transition-colors bg-none border-none p-0 cursor-pointer"
+                              >
+                                <Github className="w-4 h-4" /> CODE
+                              </button>
+                            </div>
                           </div>
                         </CardContent>
                       </Card>
