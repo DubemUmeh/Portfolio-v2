@@ -32,7 +32,6 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   productionBrowserSourceMaps: false,
   compress: true,
-  optimizeFonts: true,
 
   // Security headers and SEO
   async headers() {

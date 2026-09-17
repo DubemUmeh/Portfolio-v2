@@ -8,7 +8,7 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/projects" },
-  // { label: "Contact", href: "#contact" },
+  { label: "Booking & FAQs", href: "/booking" },
 ];
 
 export default function Navigation() {
@@ -44,10 +44,7 @@ export default function Navigation() {
           {/* Logo & Name */}
           <Link href="/" className="flex items-center justify-center cursor-pointer" onClick={() => setIsOpen(false)}>
             <div className="size-full border border-gray-200 flex items-center justify-center rounded-full bg-white text-primary shadow-sm bg-opacity-100">
-              {/* <svg className="size-4" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <path clipRule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fillRule="evenodd"></path>
-              </svg> */}
-            <span className="text-xl font-bold tracking-tight text-primary p-3">DU</span>
+              <span className="text-xl font-bold tracking-tight text-primary p-3">DU</span>
             </div>
           </Link>
 

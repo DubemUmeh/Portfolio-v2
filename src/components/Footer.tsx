@@ -9,11 +9,12 @@ export default function Footer() {
 
   const footerLinks = {
     navigation: [
-      { label: "HOME", href: "#home" },
-      { label: "ABOUT", href: "#about" },
+      { label: "HOME", href: "/#home" },
+      { label: "ABOUT", href: "/#about" },
       { label: "PROJECTS", href: "/projects" },
+      { label: "BOOKING & FAQS", href: "/booking" },
       { label: "BLOGS", href: "/blog" },
-      { label: "CONTACT", href: "#contact" },
+      { label: "CONTACT", href: "/#contact" },
     ],
     social: [
       { icon: Github, href: "https://github.com/DubemUmeh", label: "GitHub" },
