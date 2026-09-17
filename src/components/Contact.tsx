@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail, Phone, MapPin, Send, CheckCircle2,
@@ -8,48 +8,136 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
+import Script from "next/script";
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: string | HTMLElement,
+        options: {
+          sitekey: string;
+          action?: string;
+          callback?: (token: string) => void;
+          "error-callback"?: () => void;
+          "expired-callback"?: () => void;
+        }
+      ) => string;
+      reset: (widgetId?: string) => void;
+    };
+  }
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [formStartTime, setFormStartTime] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    setFormStartTime(Date.now());
+  }, []);
+
+  const renderTurnstile = () => {
+    if (
+      typeof window !== "undefined" &&
+      window.turnstile &&
+      turnstileContainerRef.current &&
+      !widgetIdRef.current
+    ) {
+      try {
+        const id = window.turnstile.render(turnstileContainerRef.current, {
+          sitekey: "0x4AAAAAAE6cNGzpSTCH-jtW",
+          action: "contact",
+          callback: (token: string) => {
+            setTurnstileToken(token);
+          },
+          "expired-callback": () => {
+            setTurnstileToken("");
+          },
+          "error-callback": () => {
+            setTurnstileToken("");
+          },
+        });
+        widgetIdRef.current = id;
+      } catch (e) {
+        console.error("Turnstile render error:", e);
+      }
+    }
+  };
+
+  const resetTurnstile = () => {
+    if (typeof window !== "undefined" && window.turnstile && widgetIdRef.current) {
+      try {
+        window.turnstile.reset(widgetIdRef.current);
+      } catch (e) {
+        console.error("Turnstile reset error:", e);
+      }
+      setTurnstileToken("");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setError("Please complete the bot security check.");
+      toast("Security Check Required", { description: "Please complete the Cloudflare security widget." });
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
     setFieldErrors({});
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          website: honeypot, // Honeypot field
+          formStartTime,
+          "cf-turnstile-response": turnstileToken,
+        }),
       });
+
       const data = await response.json();
+
       if (response.ok && data.success) {
         setIsSubmitted(true);
         toast("Message Sent Successfully", { description: "I typically respond within 24 hours" });
         setFormData({ name: "", email: "", subject: "", message: "" });
+        setHoneypot("");
+        resetTurnstile();
+        setFormStartTime(Date.now());
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {
         if (data.errors) setFieldErrors(data.errors);
-        toast("Failed to send message", { description: "Please try again" });
+        toast("Failed to send message", { description: data.message || "Please try again" });
         setError(data.message || "Failed to send message. Please try again.");
+        resetTurnstile();
       }
     } catch (err) {
       setError("Network error. Please check your connection and try again.");
       toast("Network error", { description: "Please check your connection and try again." });
+      resetTurnstile();
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const contactInfo = [
-    { icon: Mail,   label: "Email",    value: "dev@umeh.site",       href: "mailto:dev@umeh.site" },
-    { icon: Phone,  label: "Phone",    value: "+233 (55) 995-6394",  href: "tel:+233559956394" },
-    { icon: MapPin, label: "Location", value: "Takoradi, Ghana",     href: "https://wa.me/233559956394" },
+    { icon: Mail, label: "Email", value: "dev@umeh.site", href: "mailto:dev@umeh.site" },
+    { icon: Phone, label: "Phone", value: "+233 (55) 995-6394", href: "tel:+233559956394" },
+    { icon: MapPin, label: "Location", value: "Takoradi, Ghana", href: "https://wa.me/233559956394" },
   ];
 
   const inputClass =
@@ -57,6 +145,11 @@ export default function Contact() {
 
   return (
     <section id="contact" className="landing-section relative px-5 pb-20">
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+        strategy="afterInteractive"
+        onLoad={renderTurnstile}
+      />
       <div className="landing-container w-[min(100%,76rem)] mx-auto">
         <div className="landing-ai-shell relative border border-[rgba(10,10,10,0.07)] rounded-4xl bg-[radial-gradient(circle_at_top_left,rgba(246,213,247,0.16),transparent_24%),radial-gradient(circle_at_88%_14%,rgba(255,225,147,0.12),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.82),rgba(255,255,255,0.68))] shadow-[0_20px_48px_rgba(15,23,42,0.05),0_1px_0_rgba(255,255,255,0.74)_inset] p-6 before:content-[''] before:absolute before:inset-x-[-0.8rem] before:top-[-1.2rem] before:h-56 before:rounded-full before:bg-[radial-gradient(circle_at_24%_48%,rgba(246,213,247,0.55),transparent_42%),radial-gradient(circle_at_78%_38%,rgba(255,225,147,0.38),transparent_36%),radial-gradient(circle_at_62%_72%,rgba(255,184,142,0.26),transparent_34%)] before:blur-[42px] before:opacity-[0.72] before:pointer-events-none before:z-0 *:relative *:z-1">
           <div className="landing-ai-header max-w-2xl mb-8">
@@ -106,6 +199,20 @@ export default function Contact() {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Honeypot Field (Hidden from human visitors) */}
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
+
                   <div>
                     <label htmlFor="name" className="block text-[0.8rem] font-semibold tracking-[0.04em] uppercase text-[#737373] mb-1.5">
                       Name
@@ -174,9 +281,14 @@ export default function Contact() {
                     {fieldErrors.message && <p className="text-red-500 text-xs mt-1">{fieldErrors.message}</p>}
                   </div>
 
+                  {/* Turnstile Managed Widget */}
+                  <div className="py-2 flex justify-center min-h-[65px]">
+                    <div ref={turnstileContainerRef} />
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={isSubmitting || isSubmitted}
+                    disabled={isSubmitting || isSubmitted || !turnstileToken}
                     className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-[0.85rem] bg-[#0a0a0a] text-white text-[0.9rem] font-semibold hover:bg-[#262626] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_14px_rgba(10,10,10,0.18)]"
                   >
                     {isSubmitting ? (
@@ -246,7 +358,7 @@ export default function Contact() {
                     >
                       <Icon className="w-4 h-4" />
                       {label}
-                  </Link>
+                    </Link>
                   ))}
                 </div>
               </div>
