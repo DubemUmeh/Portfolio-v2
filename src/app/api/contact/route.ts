@@ -1,11 +1,77 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createEmailTransporter, generateContactEmail } from "@/lib/email";
 import { validateContactForm, sanitizeInput, type ContactFormData } from "@/lib/validation";
+import { verifyTurnstileToken } from "@/lib/turnstile";
+import { rateLimit } from "@/lib/rate-limit";
+
+const limiter = rateLimit({
+  interval: 60 * 1000, // 1 minute window
+  uniqueTokenPerInterval: 5, // Max 5 requests per minute per IP
+});
 
 export async function POST(request: NextRequest) {
   try {
+    // Extract client IP address for rate limiting
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      "127.0.0.1";
+
+    // Rate limiting check
+    const rateCheck = limiter.check(ip);
+    if (!rateCheck.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Too many requests. Please slow down and try again later.",
+        },
+        { status: 429 }
+      );
+    }
+
     // Parse request body
     const body = await request.json();
+
+    // 1. Honeypot check: If honeypot field is filled out, reject immediately as bot submission
+    if (body.website || body.confirm_email || body.honeypot) {
+      console.warn(`Honeypot triggered by IP ${ip}`);
+      return NextResponse.json(
+        { success: false, message: "Invalid submission" },
+        { status: 400 }
+      );
+    }
+
+    // 2. Submission speed check: Reject unrealistically fast submissions (< 3 seconds)
+    const formStartTime = Number(body.formStartTime);
+    if (!formStartTime || isNaN(formStartTime)) {
+      return NextResponse.json(
+        { success: false, message: "Invalid form session" },
+        { status: 400 }
+      );
+    }
+
+    const elapsedSeconds = (Date.now() - formStartTime) / 1000;
+    if (elapsedSeconds < 3) {
+      console.warn(`Submission submitted too quickly (${elapsedSeconds.toFixed(2)}s) by IP ${ip}`);
+      return NextResponse.json(
+        { success: false, message: "Form submitted too fast. Please try again." },
+        { status: 400 }
+      );
+    }
+
+    // 3. Turnstile verification
+    const turnstileToken = body["cf-turnstile-response"] || body.turnstileToken;
+    const turnstileResult = await verifyTurnstileToken(turnstileToken, ip, "contact");
+
+    if (!turnstileResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: turnstileResult.error || "Security check failed. Please verify you are human.",
+        },
+        { status: 400 }
+      );
+    }
 
     // Sanitize inputs
     const formData: ContactFormData = {
