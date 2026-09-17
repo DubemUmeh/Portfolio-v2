@@ -163,7 +163,7 @@ export default function BookingAndFaqsPage() {
         {/* Header Banner */}
         <div className="text-center max-w-3xl mx-auto">
           
-          <h1 className="display-title mt-4 text-[clamp(2.4rem,5vw,4rem)] leading-none tracking-[-0.04em] text-[#0a0a0a] font-['Fraunces',Georgia,serif]">
+          <h1 className="display-title mt-0 text-[clamp(2.4rem,5vw,4rem)] leading-none tracking-[-0.04em] text-[#0a0a0a] font-['Fraunces',Georgia,serif]">
             Book a Project or Consultation
           </h1>
           <p className="mt-4 text-[1.1rem] leading-[1.7] text-[#525252]">
