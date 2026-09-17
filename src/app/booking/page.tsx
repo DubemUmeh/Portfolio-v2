@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar, Clock, CheckCircle2, AlertCircle, Loader2,
-  HelpCircle, ChevronDown, Sparkles, Send
+  HelpCircle, ChevronDown, Send
 } from "lucide-react";
 import { toast } from "sonner";
 import Script from "next/script";
@@ -162,9 +162,7 @@ export default function BookingAndFaqsPage() {
 
         {/* Header Banner */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-[0.45rem] border border-[rgba(10,10,10,0.1)] rounded-full bg-[rgba(255,255,255,0.72)] shadow-[0_8px_20px_rgba(15,23,42,0.05)] px-[0.8rem] py-[0.45rem] text-[0.76rem] font-semibold tracking-[0.12em] uppercase text-[#737373]">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Consultations & FAQs
-          </div>
+          
           <h1 className="display-title mt-4 text-[clamp(2.4rem,5vw,4rem)] leading-none tracking-[-0.04em] text-[#0a0a0a] font-['Fraunces',Georgia,serif]">
             Book a Project or Consultation
           </h1>
