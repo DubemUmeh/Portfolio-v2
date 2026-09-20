@@ -57,6 +57,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: personSchema }}
           suppressHydrationWarning
         />
+        {/* Sabilytics tag */}
+        <Script
+          async
+          src="https://www.sabilytics.com/script.js"
+          data-site="g5itmhq8hgmd"
+          data-domain="umeh.site"
+          strategy="afterInteractive"
+         />
 
         {/* Google tag (gtag.js) */}
         <Script
