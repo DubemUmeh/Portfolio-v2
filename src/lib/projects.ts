@@ -17,6 +17,52 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
+    title: "Mega Resources Ghana — Borehole Drilling & Water Solutions",
+    description: "SEO-focused business website for a Ghanaian borehole drilling contractor, showcasing water-well services, completed projects, customer reviews and quote requests.",
+    image: null,
+    tags: ["Next.js", "TypeScript", "Technical SEO", "Local SEO", "Drilling Contractor", "Ghana"],
+    liveUrl: "https://www.megaresourcesgh.com",
+    githubUrl: "https://github.com/DubemUmeh/Mega-Resources",
+    category: "web",
+    fullDescription: "Designed and developed a responsive company website and content-management dashboard for Mega Resources, a Ghana-based borehole drilling and water-solutions company. The site presents the company's drilling expertise, service offerings, project portfolio and customer reviews, while helping property owners, businesses, institutions and organisations request a site survey or tailored quotation. The content architecture supports search visibility for borehole drilling, groundwater development and water-well services in Ghana without relying on keyword stuffing.",
+    features: [
+      "Service pages for Geological Surveys, Borehole Drilling, Air Lifting / Developing, Pumping Tests, Water Quality Analysis, Pump Installation, Borehole Rehabilitation, Hydro-fracturing, Piezometer Drilling, Observation Wells, Dewatering Wells and Horizontal Drain Drilling",
+      "Project portfolio with project location, service type, drilling depth, yield, summaries and image galleries",
+      "Quote-request flow for site surveys and drilling enquiries, capturing location, property type, service requirements and contact preferences",
+      "Customer review submission and moderation workflow",
+      "Admin dashboard for managing services, projects, gallery media and reviews without editing code",
+      "Cloudinary media uploads, PostgreSQL data storage and validated database operations",
+      "Responsive layouts, service-focused page structure and search-oriented content for local discovery"
+    ],
+    challenge: "Presenting a technically diverse set of groundwater and drilling services clearly to prospective customers while making it easier for search engines and visitors to understand each service and submit a relevant enquiry.",
+    solution: "Built a structured service and project content experience with dedicated service information, clear calls to action, project details, review content and quote-request workflows. The implementation uses Next.js, TypeScript, Tailwind CSS, Drizzle ORM, PostgreSQL and Cloudinary, with SEO-friendly page content and local-intent terminology around borehole drilling and water solutions in Ghana.",
+    results: "Delivered a maintainable marketing website and admin workflow that lets the company keep service, project, gallery and review content current, and gives prospective customers a direct path to request a site survey or quotation."
+  },
+  {
+    id: 2,
+    title: "GGP Images — Photography, Image Printing & Visual Services",
+    description: "Business website for GGP Images, presenting its visual services, portfolio gallery, company information and customer booking and enquiry paths.",
+    image: null,
+    tags: ["Next.js", "TypeScript", "Local SEO", "Business Website", "Gallery", "Admin CMS"],
+    liveUrl: "https://ggpimages.com",
+    githubUrl: "https://github.com/DubemUmeh/GGP-IMAGES",
+    category: "web",
+    fullDescription: "Developed a responsive business website for GGP Images to showcase its brand, visual work and customer-facing services. The website organises company information, services, gallery content and contact details into clear pages, helping prospective customers discover the business, review examples of its work and make enquiries or bookings. Its content is structured to support relevant searches for GGP Images and image-related services in Ghana; exact branch-level location and individual service labels should match the business's published details.",
+    features: [
+      "Dedicated Home, About, Services, Gallery and Contact pages",
+      "Visual portfolio and gallery presentation for image-led work",
+      "Booking and enquiry pathways to help customers contact the business",
+      "Admin-managed gallery and media content for ongoing updates",
+      "Structured page content and metadata opportunities for service and location-based searches",
+      "Responsive, mobile-friendly presentation for customers browsing on phones",
+      "Next.js, TypeScript, PostgreSQL/Neon, Drizzle ORM and Cloudinary-based media management"
+    ],
+    challenge: "Making a visual business's services and portfolio easy to explore while keeping the site straightforward to update and providing clear routes from discovery to booking or contact.",
+    solution: "Created a multi-page business website with distinct service, gallery and contact experiences, plus administrative media management so content can be updated without repeatedly changing application code. Search-oriented copy should use only the service names and service-area locations confirmed by GGP Images.",
+    results: "Delivered a professional web presence that centralises the business's information, showcases its visual work and gives visitors clear paths to enquire or book."
+  },
+  {
+    id: 3,
     title: "Glossy Affair E-Commerce",
     description: "Full-stack e-commerce solution with integrated secure payment processing.",
     image: "/assets/projects/glossy-affair.png",
@@ -36,7 +82,7 @@ export const projects: Project[] = [
     results: "Reduced checkout friction by 30% and improved mobile conversion rates by 25% through an optimized mobile-first UI."
   },
   {
-    id: 2,
+    id: 4,
     title: "Wedding Management Platform",
     description: "Responsive digital platform for event coordination and high-resolution media delivery.",
     image: "/assets/projects/wedding.png",
@@ -56,7 +102,7 @@ export const projects: Project[] = [
     results: "Successfully processed over 500 RSVPs with zero downtime and delivered high-resolution image galleries with sub-second load times."
   },
   {
-    id: 3,
+    id: 5,
     title: "Enterprise Bulk Mailing Platform",
     description: "Secure, high-throughput mailing system supporting multiple SMTP integrations.",
     image: "/assets/projects/bulky.png",
@@ -76,7 +122,7 @@ export const projects: Project[] = [
     results: "Enabled businesses to consistently dispatch over 10,000 emails daily while maintaining 99.9% uptime and zero security breaches."
   },
   {
-    id: 4,
+    id: 6,
     title: "JoeTech Hydraulics Portal",
     description: "High-performance corporate storefront for complex industrial equipment distribution.",
     image: "/assets/projects/joetech.png",
@@ -96,7 +142,7 @@ export const projects: Project[] = [
     results: "Streamlined inventory tracking, reducing manual data entry errors by 80% and driving a significant increase in online sales inquiries."
   },
   {
-    id: 5,
+    id: 7,
     title: "Silver Jubilee Celebration Platform",
     description: "Immersive multimedia application commemorating a 25th wedding anniversary.",
     image: "/assets/projects/wedding-anniversary.png",
@@ -116,7 +162,7 @@ export const projects: Project[] = [
     results: "Delivered a flawless digital experience to over 200 concurrent guests, maintaining perfect cross-browser stability and visual fidelity."
   },
   {
-    id: 6,
+    id: 8,
     title: "Account Market SPA",
     description: "Streamlined single-page application for secure social media account acquisition.",
     image: "/assets/projects/account-market.png",
@@ -136,7 +182,7 @@ export const projects: Project[] = [
     results: "Drastically reduced support response times to under two minutes, significantly boosting user trust and accelerating conversion velocity."
   },
   {
-    id: 7,
+    id: 9,
     title: "Bulk Mailing Mobile App",
     description: "Mobile-first platform for secure, high-volume email dispatch on the go.",
     image: "/assets/projects/bulky-app.png",
@@ -156,7 +202,7 @@ export const projects: Project[] = [
     results: "Anticipated to revolutionize remote campaign management by delivering enterprise-grade mailing power directly to mobile workflows."
   },
   {
-    id: 8,
+    id: 10,
     title: "GCP Images ERP System",
     description: "Enterprise resource planning desktop application for print management and operations.",
     image: null,
@@ -176,7 +222,7 @@ export const projects: Project[] = [
     results: "Reduced memory consumption by 60% compared to Electron alternatives and improved application startup times by 2.5x."
   },
   {
-    id: 9,
+    id: 11,
     title: "IT Choice Technologies",
     description: "Premium enterprise storefront and service platform for hardware and security solutions.",
     image: "",
@@ -196,7 +242,7 @@ export const projects: Project[] = [
     results: "Achieved a perfect 100/100 Lighthouse performance score and boosted organic search visibility by 35%."
   },
   {
-    id: 10,
+    id: 12,
     title: "RepoStruct Visualizer",
     description: "Interactive visualization tool for exploring and downloading GitHub repository architectures.",
     image: "",
@@ -216,7 +262,7 @@ export const projects: Project[] = [
     results: "Enabled smooth visualization of repositories containing up to 5,000 nodes while reducing redundant API calls by 80%."
   },
   {
-    id: 11,
+    id: 13,
     title: "INVERX Webmail Client",
     description: "Advanced webmail platform with custom SMTP injection and domain verification.",
     image: "",
@@ -236,7 +282,7 @@ export const projects: Project[] = [
     results: "Successfully enabled dynamic, zero-trust SMTP integrations with automated domain verification, achieving enterprise-grade delivery reliability."
   },
   {
-    id: 12,
+    id: 14,
     title: "Investsphare Platform",
     description: "Full-stack investment platform with secure backend and interactive dashboard.",
     image: "",
