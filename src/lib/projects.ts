@@ -40,26 +40,27 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "GGP Images — Photography, Image Printing & Visual Services",
-    description: "Business website for GGP Images, presenting its visual services, portfolio gallery, company information and customer booking and enquiry paths.",
+    title: "GGP Images — Printing, Branding & Visual Production in Takoradi",
+    description: "Printing and branding website for GGP Images in Takoradi, Ghana, showcasing commercial printing, textile printing, embroidery, large-format displays, business branding and visual production services.",
     image: null,
-    tags: ["Next.js", "TypeScript", "Local SEO", "Business Website", "Gallery", "Admin CMS"],
+    tags: ["Printing Services", "Commercial Printing", "Textile Printing", "Large Format Printing", "Branding", "Embroidery", "Takoradi, Ghana", "Next.js"],
     liveUrl: "https://ggpimages.com",
     githubUrl: "https://github.com/DubemUmeh/GGP-IMAGES",
     category: "web",
-    fullDescription: "Developed a responsive business website for GGP Images to showcase its brand, visual work and customer-facing services. The website organises company information, services, gallery content and contact details into clear pages, helping prospective customers discover the business, review examples of its work and make enquiries or bookings. Its content is structured to support relevant searches for GGP Images and image-related services in Ghana; exact branch-level location and individual service labels should match the business's published details.",
+    fullDescription: "Designed and developed a responsive website for GGP Images, a printing, branding and visual-production business based in Takoradi, Ghana. The site presents the company's print services and specialist offerings to businesses, schools, churches, event organisers and individuals looking for printing and branded materials in Takoradi and across Ghana. Dedicated service content helps visitors explore relevant options and request a quote or booking.",
     features: [
-      "Dedicated Home, About, Services, Gallery and Contact pages",
-      "Visual portfolio and gallery presentation for image-led work",
-      "Booking and enquiry pathways to help customers contact the business",
-      "Admin-managed gallery and media content for ongoing updates",
-      "Structured page content and metadata opportunities for service and location-based searches",
-      "Responsive, mobile-friendly presentation for customers browsing on phones",
-      "Next.js, TypeScript, PostgreSQL/Neon, Drizzle ORM and Cloudinary-based media management"
+      "Textile and fabric printing: T-shirt printing, DTF printing, school uniform printing, church anniversary cloths, memorial and ceremonial cloths, corporate apparel printing, custom event wear and scarf printing",
+      "Embroidery for polo shirts, corporate and school uniforms, jackets, workwear, hoodies and towels",
+      "Large-format printing for banners, billboards, backdrops, roll-up banners, scaffold wraps, outdoor advertising prints and event display materials",
+      "Digital printing for ID and access cards, invitation cards, certificates and testimonials, business cards, flyers, brochures, magazines, booklets, photocopying, document printing, scanning, lamination, promotional print materials and UV DTF printing",
+      "Branding services including logo design and brand identity, business rebranding, packaging branding, labels and stickers, cutting and plottering, corporate uniform branding, branded mugs, pens, keyholders and souvenirs",
+      "Visual production including graphic design, social media designs, website design and development, digital marketing, content, event visual materials and corporate presentation designs",
+      "Dedicated service pages, quote and booking pathways, gallery and admin-managed media content",
+      "Responsive website built with Next.js and TypeScript, with PostgreSQL/Neon, Drizzle ORM and Cloudinary-supported media workflows"
     ],
-    challenge: "Making a visual business's services and portfolio easy to explore while keeping the site straightforward to update and providing clear routes from discovery to booking or contact.",
-    solution: "Created a multi-page business website with distinct service, gallery and contact experiences, plus administrative media management so content can be updated without repeatedly changing application code. Search-oriented copy should use only the service names and service-area locations confirmed by GGP Images.",
-    results: "Delivered a professional web presence that centralises the business's information, showcases its visual work and gives visitors clear paths to enquire or book."
+    challenge: "Making a broad range of printing, branding and creative production services easy to discover and understand, while helping different customer groups identify the right service and submit a clear enquiry.",
+    solution: "Built a multi-page website with structured service categories and detailed service pages, location-relevant metadata for Takoradi and Ghana, a gallery, and clear quote and booking pathways. The implementation uses Next.js, TypeScript, Drizzle ORM, PostgreSQL/Neon and Cloudinary-supported media management.",
+    results: "Delivered a service-focused online presence that explains GGP Images' print and branding capabilities, supports local discovery for printing services in Takoradi, and gives customers a direct route to enquire about production work."
   },
   {
     id: 3,
